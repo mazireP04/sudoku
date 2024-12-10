@@ -20,3 +20,21 @@ def is_valid(board, row, col, num):
             if board[i][j] == num:
                 return False
     return True
+
+def fill_grid(board):
+    ''' fill the grid with valid numbers '''
+    
+    for row in range(9):
+        for col in range(9):
+            if board[row][col] == 0:
+                # shuffle numbers to randomize the board
+                numbers = list(range(1, 10))
+                random.shuffle(numbers)
+                for num in numbers:
+                    if is_valid(board, row, col, num):
+                        board[row][col] = num
+                        if fill_grid(board):
+                            return True
+                        board[row][col] = 0 # backtrack
+                return False
+    return True
