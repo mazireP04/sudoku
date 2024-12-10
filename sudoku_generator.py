@@ -80,7 +80,10 @@ def create_puzzle(board, num_clues = 30):
 
     return puzzle
 
-# complete_board = generate_complete_sudoku()
-# for row in complete_board:
-#     print(row)
+complete_board = generate_complete_sudoku()
+puzzle = create_puzzle(complete_board, num_clues=30)
+
+print("\nSudoku Puzzle: ")
+for row in puzzle:
+    print(row)
 
