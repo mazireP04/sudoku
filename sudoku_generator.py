@@ -23,7 +23,7 @@ def is_valid(board, row, col, num):
 
 def fill_grid(board):
     ''' fill the grid with valid numbers '''
-    
+
     for row in range(9):
         for col in range(9):
             if board[row][col] == 0:
@@ -38,3 +38,9 @@ def fill_grid(board):
                         board[row][col] = 0 # backtrack
                 return False
     return True
+
+def generate_complete_sudoku():
+    ''' generates the entirely filled sudoku board'''
+    board = [[0 for _ in range(9)] for _ in range(9)]
+    fill_grid(board)
+    return board
