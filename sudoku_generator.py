@@ -1,4 +1,5 @@
 import random
+import copy
 
 def is_valid(board, row, col, num):
     '''Check if it is valid to put the num at a particular position '''
@@ -44,3 +45,21 @@ def generate_complete_sudoku():
     board = [[0 for _ in range(9)] for _ in range(9)]
     fill_grid(board)
     return board
+
+def sudoku_solver(board):
+    for row in range(9):
+        for col in range(9):
+            if board[row][col] == 0:
+                for num in range(1, 10):
+                    if is_valid(board, row, col, num):
+                        board[row][col] = num
+                        if sudoku_solver(board):
+                            return True
+                        board[row][col] = 0
+                return False
+    return True
+
+# complete_board = generate_complete_sudoku()
+# for row in complete_board:
+#     print(row)
+
