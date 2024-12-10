@@ -59,6 +59,11 @@ def sudoku_solver(board):
                 return False
     return True
 
+def has_unique_solution(board):
+    temp_board = copy.deepcopy(board)
+    return sudoku_solver(temp_board)
+
+
 # complete_board = generate_complete_sudoku()
 # for row in complete_board:
 #     print(row)
