@@ -63,6 +63,22 @@ def has_unique_solution(board):
     temp_board = copy.deepcopy(board)
     return sudoku_solver(temp_board)
 
+def create_puzzle(board, num_clues = 30):
+    # start with a full board and remove numbers
+    puzzle = copy.deepcopy(board)
+    cells = [(row, col) for row in range(9) for col in range(9)]
+    random.shuffle(cells)
+
+    while len(cells) > 81 - num_clues:
+        row, col = cells.pop()
+        removed_value = puzzle[row][col]
+        puzzle[row][col] = 0
+
+        # check if the puzzle still has a unique solution
+        if not has_unique_solution(puzzle):
+            puzzle[row][col] = removed_value # restore
+
+    return puzzle
 
 # complete_board = generate_complete_sudoku()
 # for row in complete_board:
